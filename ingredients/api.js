@@ -65,6 +65,22 @@ router.get("/search", async (req, res) => {
   res.json({rows});
 });
 
+router.get("/id", async (req, res) => {
+  const { type } = req.query;
+  console.log("get ingredients_id", type);
+
+  const {rows} = await pool.query(
+    "SELECT * FROM ingredients WHERE type = $1",
+    [type]
+  );
+
+
+  // return all ingredients of a type
+
+  // res.status(200).json({ status: "not implemented", rows: [] });
+  res.json({rows});
+});
+
 /**
  * Student code ends here
  */
